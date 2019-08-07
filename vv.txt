@@ -1,0 +1,19 @@
+public class sizeclass {
+ 
+    public static sizes()
+    {
+         list<Case> casize =new  list<Case>([Select * from Case]);
+         list<Contact> csize =new  list<Contact>([Select * from Contact]);
+          map<integer,boolean> cmap= new map<integer,boolean>();
+        
+       for(Case casize:casize)
+        {
+           map.put(casize.CaseNumber,true) 
+            
+        }
+        system.debug(casize.size()+""+csize.size()+""+cmap.size() )
+                    
+    }
+ 
+
+}

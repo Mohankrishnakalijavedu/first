@@ -1,0 +1,114 @@
+SELECT Id, name from contact WHERE name  LIKE '%Incapsulate%'
+
+
+FIND {Incapsulate} IN ALL FIELDS RETURNING  Contact(LastName,Phone,Email,MailingCity)
+
+
+
+
+trigger Book on Book__c (Before insert,Before Update) {
+  
+   
+      
+    if(Trigger.isBefore||Trigger.isAfter){
+     List<Book__c> li =new List<Book__c>();
+     system.debug(' Before  listOfContactToInsert'+ li);
+  
+  
+   
+   for(Book__c b: trigger.new) 
+   {
+        system.debug('b----->'+ b);
+        b.Discounted_Price__c= b.Price__c-(b.Price__c*(b.Discount__c / 100));
+        system.debug('b.Discounted_Price__c--->'+b.Discounted_Price__c);
+        insert li;
+
+   }
+     
+   
+    } 
+}
+
+
+--------------------------------------------------------
+trigger  complex on Contact  (before insert,before Update) {
+    
+    for(Contact acc:Trigger.New)
+    {
+       
+           acc.Complex__c = acc.lastname+','+acc.AccountId; 
+            System.Debug('acc.Complex__c'+ acc.Complex__c);
+        
+    }
+
+}
+
+
+
+select Id,name from Account where Id not In (select AccountId from Contact) and name LIKE '%Incapsulate%'
+
+
+
+
+
+
+
+
+-----------------------------------------------------
+
+
+List<Contact> conList=new List<Contact>();
+       // List<Account> accountList=new List<Account>();
+        conList=[select count(id),name from Account where Id In (select AccountId from Contact) and name LIKE '%Incapsulate%' group by name];
+        Set<Id> idSet=new Set<Id>();
+        if(conList.size()>0){
+            for(Contact con:conList){
+                idSet.add(con.AccountId);
+            }
+        }
+        
+        system.debug('accountList->'+idSet.size());
+
+
+
+------------
+
+public class CountNoofContacts {
+    
+    public  void test()
+    {
+        List <Account> csize =new  List<Account>([select count(id),name from Account where Id In (select AccountId from Contact) and name LIKE '%Incapsulate%' group by name]);
+        map<integer,String> mp =new map<integer,String>();
+        
+        for(Contact cn:csize)
+        {
+            map.put(cn.id.size(),cn.name);
+            
+        }
+      
+        
+    }
+    
+    
+}
+
+--------------------------------------------------------------
+public class te {
+    
+    static void test(){
+   map<String,String> mlist=new map<String,String>();
+    
+   list<Account> listid = new list<Account>([select AccountNumber from Account]);
+    for(Account ld:listid)
+    {
+       mlist.put(ld.Id, ld.name);
+        
+     }
+    
+    system.debug(mlist);
+    }
+       
+ }
+
+''''''Where Reviewer_Date__c=: null 
+

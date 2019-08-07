@@ -1,0 +1,64 @@
+Record Type
+https://www.youtube.com/watch?v=ml_4aMXhk6U&t=43s
+
+
+
+https://www.youtube.com/watch?v=s9RvqFaUhRY
+
+
+workflow
+auto email
+https://www.youtube.com/watch?v=q_G5j6WFnf8
+
+
+
+flows
+https://www.youtube.com/watch?v=yHCUsBweP5A
+
+https://www.youtube.com/watch?v=jZKyFjlypjI
+
+Approval Process
+
+https://www.youtube.com/watch?v=lj8j81oXeAc
+
+
+validation rules
+https://www.youtube.com/watch?v=5-fEWo6b34U
+
+
+
+
+sharing settings
+setup>security control>sharing settings/sharingrules
+https://www.youtube.com/watch?v=TDD0O-6SctU
+
+******************************************************
+<apex:page standardController="Account" recordSetVar="accts">
+    
+    <apex:pageblock >
+    <apex:pageBlockSection columns="1">
+     <apex:pageBlockTable value="{!accts}" var="acct">
+    
+    <apex:column value="{! acct.Name }"/>
+    <apex:column value="{! acct.Phone }"/>        
+    <apex:column value="{! acct.Industry }"/>        
+    <apex:column value="{! acct.AnnualRevenue }"/>
+    
+  </apex:pageBlockTable>
+</apex:pageBlockSection>
+</apex:pageblock>
+
+</apex:page>
+
+
+
+<apex:outputLabel value="View:"/>
+
+
+
+Git Vedio
+---------
+https://www.youtube.com/watch?v=kda3i8v3p3Y&list=PL_HlKez9XCSNExhnKOYAGOhedSPaUE9cB&index=4
+
+
+https://www.youtube.com/watch?v=KScwEeYwJJk
